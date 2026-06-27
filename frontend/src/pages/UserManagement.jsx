@@ -138,7 +138,7 @@ export default function UserManagement() {
             <label className="text-label text-xs mb-1 block">Email <span className="text-red-400">*</span></label>
             <input type="email" value={formData.email}
               onChange={e => setFormData(p => ({ ...p, email: e.target.value }))}
-              placeholder="email@raja.id"
+              placeholder="email@alliansi.id"
               className="w-full px-3 py-2.5 rounded-lg bg-zinc-950/70 border border-zinc-700 focus:border-emerald-500/50 outline-none text-zinc-100 text-sm" />
           </div>
           <div>

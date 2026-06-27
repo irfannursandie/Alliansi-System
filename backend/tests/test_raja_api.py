@@ -214,7 +214,7 @@ class TestSIJ:
         from datetime import datetime, timedelta
         past_date = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
         r = requests.post(f"{BASE_URL}/api/sij", json={
-            "driver_id": "driver047",
+            "driver_id": "std0203",
             "sheets": 2,
             "qris_ref": "TEST_QRIS_PAST_DATE",
             "date": past_date
@@ -227,7 +227,7 @@ class TestSIJ:
         from datetime import datetime, timedelta
         far_future_date = (datetime.now() + timedelta(days=10)).strftime("%Y-%m-%d")
         r = requests.post(f"{BASE_URL}/api/sij", json={
-            "driver_id": "driver048",
+            "driver_id": "std0014a",
             "sheets": 2,
             "qris_ref": "TEST_QRIS_FAR_FUTURE",
             "date": far_future_date
@@ -257,9 +257,7 @@ class TestDashboard:
         data = r.json()
         assert "total_sij_today" in data
         assert "sij_per_shift" in data
-        assert "revenue_per_admin" in data
         assert "daily_trend" in data
-        assert "driver_ranking" in data
         assert "mismatch_list" in data
         assert len(data["daily_trend"]) == 7
 

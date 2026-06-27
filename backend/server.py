@@ -1451,7 +1451,7 @@ async def get_audit_log(date: Optional[str] = None,
                         search: Optional[str] = None,
                         sort_by: str = "date",
                         sort_dir: str = "desc",
-                        user: dict = Depends(require_admin)):
+                        user: dict = Depends(require_superadmin)):
     conditions = []
     params = []
     idx = 1
@@ -1474,7 +1474,7 @@ async def get_audit_log(date: Optional[str] = None,
 
 @api_router.get("/audit/export")
 async def export_audit_csv(date: Optional[str] = None,
-                           user: dict = Depends(require_admin)):
+                           user: dict = Depends(require_superadmin)):
     if date:
         rows = await pool.fetch(
             "SELECT date, driver_id, has_sij, has_trip, mismatch FROM audit_log WHERE date = $1 ORDER BY date DESC",
@@ -2363,8 +2363,13 @@ async def create_tables():
 
 
 async def seed_initial_data():
+    superadmin_pwd = bcrypt.hashpw("superadmin123".encode(), bcrypt.gensalt()).decode()
+    await pool.execute(
+        "INSERT INTO users (user_id, name, role, shift, email, password_hash) VALUES ($1, $2, $3, $4, $5, $6) ON CONFLICT (user_id) DO UPDATE SET email=EXCLUDED.email, password_hash=EXCLUDED.password_hash, role=EXCLUDED.role",
+        "superadmin", "Super Admin", "superadmin", None, "superadmin@raja.id", superadmin_pwd)
+
     count = await pool.fetchval("SELECT COUNT(*) FROM users")
-    if count > 0:
+    if count > 1:
         return
     logger.info("Seeding initial data...")
     users = [
