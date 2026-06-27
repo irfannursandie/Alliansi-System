@@ -9,7 +9,8 @@
 /coverage
 
 # production
-/build
+# /build is intentionally tracked so deployment uses the pre-built output
+# /build
 
 # misc
 .DS_Store

@@ -1,2 +1,4 @@
 #!/bin/bash
-cd frontend && npm install --legacy-peer-deps && npx craco build
+# Frontend is pre-built and committed to the repo (frontend/build/).
+# Only install Python backend dependencies here.
+pip install -r backend/requirements.txt
