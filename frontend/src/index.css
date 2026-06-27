@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 4%;
+    --foreground: 0 0% 98%;
+    --card: 222 30% 9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 222 30% 9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 160 84% 39%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 20% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 222 20% 15%;
+    --muted-foreground: 220 10% 60%;
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 222 20% 15%;
+    --input: 222 20% 15%;
+    --ring: 160 84% 39%;
+    --radius: 0.5rem;
+    --chart-1: 160 84% 39%;
+    --chart-2: 199 89% 48%;
+    --chart-3: 142 71% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    background-color: hsl(222 47% 4%);
+    @apply text-zinc-100;
+    font-family: 'Manrope', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Chivo', sans-serif;
+  }
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply backdrop-blur-md border border-white/5 shadow-lg;
+    background-color: rgba(10, 20, 40, 0.6);
+  }
+  .glass-card-hover {
+    @apply backdrop-blur-md border border-white/5 shadow-lg hover:border-white/10 transition-colors;
+    background-color: rgba(10, 20, 40, 0.6);
+  }
+  .text-label {
+    @apply text-xs font-mono uppercase tracking-widest text-zinc-500;
+  }
+  .kpi-glow-emerald {
+    box-shadow: 0 0 40px rgba(16, 185, 129, 0.10);
+  }
+  .kpi-glow-sky {
+    box-shadow: 0 0 40px rgba(14, 165, 233, 0.10);
+  }
+  .kpi-glow-red {
+    box-shadow: 0 0 40px rgba(239, 68, 68, 0.08);
+  }
+  .kpi-glow-green {
+    box-shadow: 0 0 40px rgba(16, 185, 129, 0.10);
+  }
+  .kpi-glow-blue {
+    box-shadow: 0 0 40px rgba(14, 165, 233, 0.10);
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #1e3a5f transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #1e3a5f;
+    border-radius: 2px;
+  }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white !important; color: black !important; }
+  .print-content { display: block !important; }
+}

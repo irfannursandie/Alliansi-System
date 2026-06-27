@@ -1,0 +1,35 @@
+Task: Implement Inline Manual Ritase (Trip) Update in the Weekly Report (Laporan Mingguan) Page
+
+Currently, in the LaporanMingguan (Weekly Report) page, the table cells display data in a "KHD | Ritase" format (e.g., 1 | 4). If a driver is absent (KHD = 0), clicking the cell opens an "Absence Remark" modal.
+
+I want to update this behavior to the following logic:
+
+If the cell is clicked and KHD = 0: Keep the current behavior (open the "Absence Remark" modal).
+
+If the cell is clicked and KHD > 0 (meaning the driver is present/has SIJ): Open a NEW modal called "Manual Ritase Update".
+
+Frontend Tasks (React):
+
+Analyze the frontend file for the Weekly Report (likely src/pages/LaporanMingguan.jsx or similar).
+
+Create new state variables to manage the "Manual Ritase Update" modal visibility and its data (driver ID, selected date, and the new ritase input value).
+
+Create the UI for this new modal. Match the existing design system (Dark mode, bg-zinc-900 background, amber-500 for primary action buttons). The modal should display the Driver's Name, the Selected Date, a number input field for the total ritase, a "Cancel" button, and a "Save" button.
+
+Modify the onClick event on the table cell (<td>) to implement the conditional logic mentioned above (KHD == 0 vs KHD > 0).
+
+Create a submit function that sends a request (POST/PUT) to the backend to save the new ritase value, and then refetches the table data upon success.
+
+Backend (Python/FastAPI) & Database Tasks:
+
+Analyze server.py and the current Supabase database schema. Understand how the Weekly Report currently calculates the "ritase" total (whether by counting rows in sij_transactions or reading from a summary table).
+
+Determine the safest and best way to store this manual ritase override without messing up the raw transaction logs. (For example, you might need to create a new table like daily_driver_summaries or add a manual_ritase column to an existing attendance table).
+
+IMPORTANT: Provide me with the exact SQL query to run in my Supabase SQL Editor to create the necessary table or column for storing this manual ritase data. Please ask me to execute this SQL before you proceed with writing the Python code.
+
+Create a new API endpoint (e.g., /api/update-manual-ritase) to receive and store the manual override data from the frontend.
+
+Modify the existing Weekly Report GET endpoint so that it prioritizes and returns this manual ritase override value if it exists for a specific driver and date; otherwise, fallback to the default calculated count.
+
+Please execute this step-by-step. Start by analyzing the codebase and let me know your proposed database changes first.
