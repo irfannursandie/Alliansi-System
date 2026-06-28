@@ -358,19 +358,19 @@ async def export_drivers_pdf(user: dict = Depends(get_current_user)):
 async def update_driver(driver_id: str,
                         data: DriverUpdateRequest,
                         user: dict = Depends(require_superadmin)):
-    update_data = {k: v for k, v in data.model_dump().items() if v is not None}
-    if update_data:
-        sets = []
-        params = []
-        idx = 1
-        for k, v in update_data.items():
-            sets.append(f"{k} = ${idx}")
-            params.append(v)
-            idx += 1
-        params.append(driver_id)
-        await pool.execute(
-            f"UPDATE drivers SET {', '.join(sets)} WHERE driver_id = ${idx}",
-            *params)
+    await pool.execute(
+        """UPDATE drivers SET
+               name = COALESCE($1, name),
+               phone = COALESCE($2, phone),
+               plate = COALESCE($3, plate),
+               kendaraan = COALESCE($4, kendaraan),
+               no_stiker_bandara = COALESCE($5, no_stiker_bandara),
+               category = COALESCE($6, category),
+               status = COALESCE($7, status)
+           WHERE driver_id = $8""",
+        data.name, data.phone, data.plate,
+        data.kendaraan, data.no_stiker_bandara,
+        data.category, data.status, driver_id)
     return {"message": "Driver diperbarui"}
 
 
