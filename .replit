@@ -10,6 +10,7 @@ packages = ["cargo", "freetype", "glibcLocales", "libiconv", "libxcrypt", "postg
 
 [userenv.shared]
 SUPABASE_DATABASE_URL = "postgresql://postgres.lkwhbhzasxchknzjptvz:irfannursandie@aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true"
+REACT_APP_API_URL = "[https://f44d32ec-cbb6-4534-b018-2fb4a22d248a-00-3u70w0ts44hpu.pike.replit.dev](https://f44d32ec-cbb6-4534-b018-2fb4a22d248a-00-3u70w0ts44hpu.pike.replit.dev)"
 
 [workflows]
 runButton = "Project"
