@@ -113,6 +113,8 @@ class DriverUpdateRequest(BaseModel):
     name: Optional[str] = None
     phone: Optional[str] = None
     plate: Optional[str] = None
+    kendaraan: Optional[str] = None
+    no_stiker_bandara: Optional[str] = None
     category: Optional[str] = None
     status: Optional[str] = None
 

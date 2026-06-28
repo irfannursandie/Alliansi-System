@@ -13,6 +13,8 @@ const EditModal = ({ driver, onClose, onSave }) => {
     name: driver.name,
     phone: driver.phone,
     plate: driver.plate,
+    kendaraan: driver.kendaraan || '',
+    no_stiker_bandara: driver.no_stiker_bandara || '',
     category: driver.category,
     status: driver.status,
   });
@@ -51,6 +53,16 @@ const EditModal = ({ driver, onClose, onSave }) => {
             <label className="text-label block mb-1.5">Plat Nomor</label>
             <input value={form.plate} onChange={e => setForm(f => ({ ...f, plate: e.target.value }))}
               className="w-full px-3 py-2 rounded-lg bg-zinc-950/70 border border-zinc-700 focus:border-emerald-500/50 outline-none text-zinc-100 text-sm transition-all font-mono" />
+          </div>
+          <div>
+            <label className="text-label block mb-1.5">Kendaraan</label>
+            <input value={form.kendaraan} onChange={e => setForm(f => ({ ...f, kendaraan: e.target.value }))}
+              className="w-full px-3 py-2 rounded-lg bg-zinc-950/70 border border-zinc-700 focus:border-emerald-500/50 outline-none text-zinc-100 text-sm transition-all" />
+          </div>
+          <div>
+            <label className="text-label block mb-1.5">No. Stiker Bandara</label>
+            <input value={form.no_stiker_bandara} onChange={e => setForm(f => ({ ...f, no_stiker_bandara: e.target.value }))}
+              className="w-full px-3 py-2 rounded-lg bg-zinc-950/70 border border-zinc-700 focus:border-emerald-500/50 outline-none text-zinc-100 text-sm transition-all" />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
