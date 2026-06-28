@@ -241,7 +241,7 @@ async def get_drivers(search: str = "",
     col = sort_by if sort_by in DRIVER_SORT_COLS else "name"
     direction = "DESC" if sort_dir.lower() == "desc" else "ASC"
     rows = await pool.fetch(
-        f"SELECT driver_id, name, phone, plate, category, status, mismatch_count, total_sij_month FROM drivers {where} ORDER BY {col} {direction}",
+        f"SELECT driver_id, name, phone, plate, kendaraan, no_stiker_bandara, category, status, mismatch_count, total_sij_month FROM drivers {where} ORDER BY {col} {direction}",
         *params)
     return rows_to_list(rows)
 
@@ -274,13 +274,14 @@ async def create_driver(data: DriverCreateRequest,
 @api_router.get("/drivers/export/csv")
 async def export_drivers_csv(user: dict = Depends(get_current_user)):
     rows = await pool.fetch(
-        "SELECT driver_id, name, phone, plate, category, status, mismatch_count, total_sij_month FROM drivers ORDER BY name"
+        "SELECT driver_id, name, phone, plate, kendaraan, no_stiker_bandara, category, status, mismatch_count, total_sij_month FROM drivers ORDER BY name"
     )
     drivers = rows_to_list(rows)
     output = io.StringIO()
     writer = csv.DictWriter(output,
                             fieldnames=[
                                 "driver_id", "name", "phone", "plate",
+                                "kendaraan", "no_stiker_bandara",
                                 "category", "status", "mismatch_count",
                                 "total_sij_month"
                             ])
@@ -296,7 +297,7 @@ async def export_drivers_csv(user: dict = Depends(get_current_user)):
 @api_router.get("/drivers/export/pdf")
 async def export_drivers_pdf(user: dict = Depends(get_current_user)):
     rows = await pool.fetch(
-        "SELECT driver_id, name, phone, plate, category, status, mismatch_count, total_sij_month FROM drivers ORDER BY name"
+        "SELECT driver_id, name, phone, plate, kendaraan, no_stiker_bandara, category, status, mismatch_count, total_sij_month FROM drivers ORDER BY name"
     )
     drivers = rows_to_list(rows)
     buf = io.BytesIO()
@@ -314,14 +315,15 @@ async def export_drivers_pdf(user: dict = Depends(get_current_user)):
         Spacer(1, 5 * mm)
     ]
     header = [
-        "Driver ID", "Nama", "Telepon", "Plat", "Kategori", "Status",
-        "Mismatch", "SIJ Bulan"
+        "Driver ID", "Nama", "Telepon", "Plat", "Kendaraan",
+        "No. Stiker", "Kategori", "Status", "Mismatch", "SIJ Bulan"
     ]
     data = [header]
     for d in drivers:
         data.append([
-            d['driver_id'], d['name'], d['phone'], d['plate'], d['category'],
-            d['status'],
+            d['driver_id'], d['name'], d['phone'], d['plate'],
+            d.get('kendaraan', '') or '', d.get('no_stiker_bandara', '') or '',
+            d['category'], d['status'],
             str(d['mismatch_count']),
             str(d['total_sij_month'])
         ])

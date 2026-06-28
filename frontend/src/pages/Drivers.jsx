@@ -376,6 +376,8 @@ export default function Drivers() {
                   <th className="text-left px-4 py-3 text-label">Driver ID</th>
                   <th className="text-left px-4 py-3 text-label">Nama</th>
                   <th className="text-left px-4 py-3 text-label">Plat</th>
+                  <th className="text-left px-4 py-3 text-label">Kendaraan</th>
+                  <th className="text-left px-4 py-3 text-label">No. Stiker</th>
                   <th className="text-left px-4 py-3 text-label">Kategori</th>
                   <th className="text-left px-4 py-3 text-label">Status</th>
                   <th className="text-right px-4 py-3 text-label">SIJ Bulan</th>
@@ -390,6 +392,8 @@ export default function Drivers() {
                     <td className="px-4 py-3 font-mono text-xs text-zinc-400">{d.driver_id}</td>
                     <td className="px-4 py-3 text-zinc-100 font-medium">{d.name}</td>
                     <td className="px-4 py-3 font-mono text-xs text-zinc-400">{d.plate}</td>
+                    <td className="px-4 py-3 text-xs text-zinc-400">{d.kendaraan || '-'}</td>
+                    <td className="px-4 py-3 font-mono text-xs text-zinc-400">{d.no_stiker_bandara || '-'}</td>
                     <td className="px-4 py-3">
                       <span className={`text-xs font-mono ${d.category === 'premium' ? 'text-emerald-400' : 'text-zinc-400'}`}>
                         {CATEGORY_LABELS[d.category]}
