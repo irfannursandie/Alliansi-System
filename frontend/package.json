@@ -95,6 +95,6 @@
     "shell-quote": "file:./vendor/shell-quote"
   },
   "engines": {
-    "node": "18.x"
+    "node": "24.x"
   }
 }
