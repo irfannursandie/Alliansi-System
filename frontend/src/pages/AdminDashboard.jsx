@@ -92,8 +92,8 @@ export default function AdminDashboard() {
 
   const getMismatchColor = (count) => {
     if (count >= 3) return 'text-red-400';
-    if (count >= 2) return 'text-orange-400';
-    return 'text-yellow-400';
+    if (count >= 2) return 'text-blue-400';
+    return 'text-blue-300';
   };
 
   if (loading) return (
@@ -140,7 +140,7 @@ export default function AdminDashboard() {
       >
         <div className="flex items-center justify-between px-5 py-4 border-b border-zinc-800/50">
           <div className="flex items-center gap-2">
-            <AlertTriangle className="w-4 h-4 text-orange-400" />
+            <AlertTriangle className="w-4 h-4 text-blue-400" />
             <h2 className="text-sm font-semibold text-zinc-100">Daftar Mismatch Driver</h2>
           </div>
           <span className="text-xs font-mono text-zinc-500">{data?.mismatch_list?.length || 0} driver</span>
@@ -230,7 +230,7 @@ export default function AdminDashboard() {
 export const StatusBadge = ({ status }) => {
   const map = {
     active: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-    warning: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
+    warning: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
     suspend: 'bg-red-500/10 text-red-400 border-red-500/20',
   };
   const labels = { active: 'Aktif', warning: 'Warning', suspend: 'Suspend' };

@@ -82,7 +82,7 @@ function KPICard({ title, value, icon, color, prefix, suffix, subtitle, breakdow
 function StatusBadge({ status }) {
   const styles = {
     active: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-    warning: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
+    warning: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
     suspend: 'bg-red-500/10 text-red-400 border-red-500/20',
   };
   const labels = { active: 'Aktif', warning: 'Warning', suspend: 'Suspend' };
@@ -160,16 +160,16 @@ function LineSVGChart({ data }) {
       <polyline
         points={polyline}
         fill="none"
-        stroke="#f59e0b"
+        stroke="#10b981"
         strokeWidth="2"
         strokeLinejoin="round"
       />
       {pts.map(function(p, i) {
         return (
           <g key={i}>
-            <circle cx={p.x} cy={p.y} r="3.5" fill="#f59e0b" />
+            <circle cx={p.x} cy={p.y} r="3.5" fill="#10b981" />
             <text x={p.x} y={svgH - 6} textAnchor="middle" fill="#71717a" fontSize="8" fontFamily="monospace">{p.date}</text>
-            <text x={p.x} y={p.y - 8} textAnchor="middle" fill="#f59e0b" fontSize="9" fontFamily="monospace">{p.sij}</text>
+            <text x={p.x} y={p.y - 8} textAnchor="middle" fill="#10b981" fontSize="9" fontFamily="monospace">{p.sij}</text>
           </g>
         );
       })}
@@ -335,7 +335,7 @@ export default function SuperAdminDashboard() {
                 </thead>
                 <tbody>
                   {(data.ritase_ranking || []).map(function(d, idx) {
-                    var rankColor = idx === 0 ? 'text-emerald-400' : idx === 1 ? 'text-zinc-300' : idx === 2 ? 'text-orange-400' : 'text-zinc-500';
+                    var rankColor = idx === 0 ? 'text-emerald-400' : idx === 1 ? 'text-zinc-300' : idx === 2 ? 'text-blue-400' : 'text-zinc-500';
                     return (
                       <tr key={d.driver_id} className="border-b border-zinc-800/30 hover:bg-white/5 transition-colors">
                         <td className="px-4 py-3"><span className={'font-bold font-mono text-sm ' + rankColor}>#{idx + 1}</span></td>
@@ -356,7 +356,7 @@ export default function SuperAdminDashboard() {
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.44 }} className="glass-card rounded-xl overflow-hidden">
           <div className="flex items-center justify-between px-5 py-4 border-b border-zinc-800/50">
             <div className="flex items-center gap-2">
-              <AlertTriangle className="w-4 h-4 text-orange-400" />
+              <AlertTriangle className="w-4 h-4 text-blue-400" />
               <h2 className="text-sm font-semibold text-zinc-100">Mismatch Driver</h2>
             </div>
             <span className="text-xs font-mono text-zinc-500">{data && data.mismatch_list ? data.mismatch_list.length : 0}</span>
@@ -376,7 +376,7 @@ export default function SuperAdminDashboard() {
                 </thead>
                 <tbody>
                   {(data.mismatch_list || []).map(function(d) {
-                    const mc = d.mismatch_count >= 3 ? 'text-red-400' : d.mismatch_count >= 2 ? 'text-orange-400' : 'text-yellow-400';
+                    const mc = d.mismatch_count >= 3 ? 'text-red-400' : d.mismatch_count >= 2 ? 'text-blue-400' : 'text-blue-300';
                     return (
                       <tr key={d.driver_id} className="border-b border-zinc-800/30 hover:bg-white/5 transition-colors">
                         <td className="px-4 py-3">

@@ -99,7 +99,7 @@ const printReceiptBrowser = async (tx, plate) => {
     <body>
       ${tickets}
       <div class="no-print" style="text-align:center; margin-top:20px">
-        <button onclick="window.print()" style="padding:10px 24px; font-size:14px; cursor:pointer; background:#f59e0b; border:none; border-radius:6px; font-weight:bold;">
+        <button onclick="window.print()" style="padding:10px 24px; font-size:14px; cursor:pointer; background:#10b981; border:none; border-radius:6px; font-weight:bold;">
           Cetak / Print
         </button>
       </div>

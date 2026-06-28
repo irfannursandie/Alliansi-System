@@ -326,7 +326,7 @@ export default function Drivers() {
         {[
           { label: 'Semua', value: '', count: stats.total, color: 'text-zinc-300 bg-zinc-800 border-zinc-700' },
           { label: 'Aktif', value: 'active', count: stats.active, color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
-          { label: 'Warning', value: 'warning', count: stats.warning, color: 'text-yellow-400 bg-yellow-500/10 border-yellow-500/20' },
+          { label: 'Warning', value: 'warning', count: stats.warning, color: 'text-blue-400 bg-blue-500/10 border-blue-500/20' },
           { label: 'Suspend', value: 'suspend', count: stats.suspend, color: 'text-red-400 bg-red-500/10 border-red-500/20' },
         ].map(pill => (
           <button key={pill.value} onClick={() => setStatusFilter(pill.value)}
@@ -385,7 +385,7 @@ export default function Drivers() {
                     <td className="px-4 py-3 text-right font-mono font-bold text-emerald-400">{d.total_sij_month}</td>
                     <td className="px-4 py-3 text-right">
                       {d.mismatch_count > 0 ? (
-                        <span className={`font-mono font-bold text-xs ${d.mismatch_count >= 3 ? 'text-red-400' : 'text-orange-400'}`}>
+                        <span className={`font-mono font-bold text-xs ${d.mismatch_count >= 3 ? 'text-red-400' : 'text-blue-400'}`}>
                           {d.mismatch_count}x
                         </span>
                       ) : (
