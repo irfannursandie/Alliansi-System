@@ -95,6 +95,8 @@ const CreateModal = ({ onClose, onCreate }) => {
     plate: '',
     category: 'standar',
     status: 'active',
+    kendaraan: '',
+    no_stiker_bandara: '',
   });
   const [saving, setSaving] = useState(false);
 
@@ -142,6 +144,18 @@ const CreateModal = ({ onClose, onCreate }) => {
           <div>
             <label className="text-label block mb-1.5">Plat Nomor</label>
             <input value={form.plate} onChange={e => setForm(f => ({ ...f, plate: e.target.value }))}
+              className="w-full px-3 py-2 rounded-lg bg-zinc-950/70 border border-zinc-700 focus:border-emerald-500/50 outline-none text-zinc-100 text-sm transition-all font-mono" />
+          </div>
+          <div>
+            <label className="text-label block mb-1.5">Kendaraan</label>
+            <input value={form.kendaraan} onChange={e => setForm(f => ({ ...f, kendaraan: e.target.value }))}
+              placeholder="Contoh: Toyota Innova"
+              className="w-full px-3 py-2 rounded-lg bg-zinc-950/70 border border-zinc-700 focus:border-emerald-500/50 outline-none text-zinc-100 text-sm transition-all" />
+          </div>
+          <div>
+            <label className="text-label block mb-1.5">No. Stiker Bandara</label>
+            <input value={form.no_stiker_bandara} onChange={e => setForm(f => ({ ...f, no_stiker_bandara: e.target.value }))}
+              placeholder="Contoh: SMF-001"
               className="w-full px-3 py-2 rounded-lg bg-zinc-950/70 border border-zinc-700 focus:border-emerald-500/50 outline-none text-zinc-100 text-sm transition-all font-mono" />
           </div>
           <div className="grid grid-cols-2 gap-3">

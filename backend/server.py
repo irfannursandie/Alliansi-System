@@ -105,6 +105,8 @@ class DriverCreateRequest(BaseModel):
     plate: str = ""
     category: str = "standar"
     status: str = "active"
+    kendaraan: str = ""
+    no_stiker_bandara: str = ""
 
 
 class DriverUpdateRequest(BaseModel):
@@ -260,9 +262,9 @@ async def create_driver(data: DriverCreateRequest,
     if existing:
         raise HTTPException(status_code=400, detail="Driver ID sudah ada")
     await pool.execute(
-        "INSERT INTO drivers (driver_id, name, phone, plate, category, status, mismatch_count, total_sij_month) VALUES ($1, $2, $3, $4, $5, $6, 0, 0)",
+        "INSERT INTO drivers (driver_id, name, phone, plate, category, status, mismatch_count, total_sij_month, kendaraan, no_stiker_bandara) VALUES ($1, $2, $3, $4, $5, $6, 0, 0, $7, $8)",
         data.driver_id, data.name, data.phone, data.plate, data.category,
-        data.status)
+        data.status, data.kendaraan, data.no_stiker_bandara)
     return {
         "message": "Driver berhasil ditambahkan",
         "driver_id": data.driver_id
