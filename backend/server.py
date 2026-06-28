@@ -29,6 +29,9 @@ security = HTTPBearer()
 
 @app.get("/")
 async def root_health():
+    build_index = Path(__file__).parent.parent / "frontend" / "build" / "index.html"
+    if build_index.exists():
+        return FileResponse(str(build_index))
     return {"status": "API is running"}
 
 
